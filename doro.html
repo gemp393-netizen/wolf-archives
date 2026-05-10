@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0A0A0A">
+<title>Dororo - ANiGo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.02.css">
+</head>
+<body>
+
+<header id="serie-header">
+  <button class="back-btn" onclick="location.href=SERIE.backUrl||'home.html'" aria-label="Volver">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <span class="header-title" id="header-title"></span>
+  <button class="cfg-btn" id="cfg-btn" aria-label="Configuración">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+</header>
+
+<!-- Reproductor integrado -->
+<div id="player-section" style="display:none">
+  <div id="player-header">
+    <button id="btn-close-player" aria-label="Volver a episodios">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div id="player-ep-title"></div>
+    <div class="player-actions">
+      <button id="btn-report" class="action-btn" aria-label="Reportar error">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <span>Reportar</span>
+      </button>
+      <button id="btn-cast" class="action-btn btn-cast" aria-label="Transmitir">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        <span>Transmitir</span>
+      </button>
+      <button id="btn-lang" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="btn-lang-label">Idioma</span>
+      </button>
+      <button id="btn-srv" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <span id="btn-srv-label">Servidor</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="player-wrap">
+    <div class="player-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div id="player-footer">
+    <button class="nav-btn" id="btn-prev">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>Anterior</span>
+    </button>
+    <button class="nav-btn" id="btn-next">
+      <span>Siguiente</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="seasons-wrap">
+  <div class="seasons-tabs" id="seasons-tabs"></div>
+</div>
+
+<div class="episodes-list" id="episodes-list"></div>
+
+<script>
+const SERIE = {
+  id: "doro",
+  title: "Dororo",
+  url: "",
+  backUrl: "go:home",
+  proxyUrl: "https://calm-water-d0e3.yt-thesthipoficial.workers.dev/",
+  seasons: [
+    {
+      num: 1,
+      label: "Temporada 1",
+      episodes: [
+                        {
+                            num: 1, title: "La historia de Daigo", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/yKSzJWzJONMo7pCoAr7r9PqutRP.jpg", synopsis: "En el período Sengoku, el daimio Daigo Kagemitsu hace un pacto con 12 demonios, ofreciéndoles a su hijo nonato a cambio de la prosperidad de sus tierras. Años más tarde, el joven ladrón Dororo es atacado por un demonio pero rescatado por un misterioso joven, cuyas partes del cuerpo resultan ser casi totalmente protésicas.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/1e057a66a74904f3c29898921697cb95" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/UvsNXxZr?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/bMAxxJRY#vv1Si6wGn-fEthsqynwdUdLXYiaLB23RwJKsiTvX4dw" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 2, title: "La historia de Bandai", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/aAyIz1DjRO9zDFWHXiubvfjny44.jpg", synopsis: "Dororo y Hyakkimaru visitan una aldea gobernada por una mujer llamada Bandai. Inexplicablemente, Hyakkimaru saca su espada delante de su jefa y los aldeanos lo encerarán a él y a Dororo en un almacén. Pero resulta que allí ya había alguien...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/38b190ec37b13e2e60811bccd7ba2c16" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/DUaUQXz7?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/GZBhAIqI#-V1KnHzEPOfsH9ma19l4krs9U9qw_SCpk2YeVuqwVVw" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 3, title: "La historia de Jukai", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/vyMMjIjIAHVb5REd3PoTcu1xTIQ.jpg", synopsis: "Jukai es un médico que viaja ofreciendo prótesis de brazos y piernas a quienes las han perdido en la guerra. Un día, en la orilla del río, encuentra a un bebé al que le falta la mayor parte del cuerpo. Lo criará y le llamará Hyakkimaru. Jukai le dará al niño prótesis, pero llega el día en que Hyakkimaru sale de viaje para recuperar las partes de su propio cuerpo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/db663faf1d8730a19790e9462327d02e" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/4Y1ik2jC?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/CBQA2axI#JjzRHeEiANfh3p-iWe8kb7ZSWjy--oPpSN3mjO6oKmo" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 4, title: "La historia de la espada maldita", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/xA9ldyVfLYaM925eozxD0YChKFZ.jpg", synopsis: "Dororo y Hyakkimaru luchan contra el asesino Tanosuke, que porta una espada maldita con un demonio dentro. Hyakkimaru repele con dificultad a Tanosuke, pero la espada maldita cae en las manos de Dororo y comienza a tomar posesión sobre él.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/a5f4e4917eade9965f7497c83717a81e" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/vP3LEFdr?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/6BpGCaTL#VgAIu_s9EM9XBNfhgCQ_h3R2tzIo9svuzpxJHKAcyEI" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 5, title: "La historia de la canción de Moriko: Parte 1", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/qCURkokstKjVh9nEJiFp0DljsKj.jpg", synopsis: "Luchando para adaptarse a un mundo desconocido de \"sonido\", Hyakkimaru se lesiona en una pelea con un ghoul. Lo recibe y cuida una joven llamada Mio, quien cuida a niños huérfanos de la guerra. Sin embargo, después de darse cuenta de que hay un demonio cerca, Hyakkimaru sale para luchar contra él antes de recuperarse por completo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/f8e42111769d6481326ac255fd76cb75" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/566gtTse?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/qQJHgaIL#SkrIHsCisqCSpBYNWewHhOYwYtqAx0-ceuKxxxbFcGk" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 6, title: "La historia de la canción de Moriko: Parte 2", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/vCNIB14j6w8pu4LKeokPdDHxkvS.jpg", synopsis: "Hyakkimaru recupera su voz tras una pelea con un demonio, pero pierde su pierna en el proceso. Después de regresar al derruido templo para permitir que sus heridas sanen, una vez más se propone enfrentar al demonio. Mientras tanto, Mio y los niños esperan en el templo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/c05d36281712c46f3c47ec3b2614c973" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/vTURb4mj?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/yZIHwRxC#oUndKMyzimm1oSq_HyyOMZnpV8ZuDDuN2NBTGhZarTo" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 7, title: "La historia de la araña de seda Jorogumo", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/sADQK5Pn7V7DHvTLUntbAa6ms8K.jpg", synopsis: "El demonio con aspecto de araña Jorogumo es herida por Hyakkimaru. Para curarse, se transforma en una mujer y aprovecha la hospitalidad de un joven llamado Yajirō. Habiendo dejado a Jorogumo escapar, Dororo y Hyakkimaru se detienen en una aldea donde escuchan rumores de un secuestrador.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/488cd552082115eb15e634c5ae7baaa6" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/SBpAjaAA#96LmX1kMWL4aNSRs6nHkcctCxY7tPas52_ymdkW-DVQ" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 8, title: "La historia de Saru", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/wcEwjXwiG5Av5QSFHSGnVfjRWEg.jpg", synopsis: "En un pueblo determinado, se ofrece a las jóvenes como sacrificios rituales para apaciguar a un demonio ciempiés gigante que aparece envuelto en nubes negras. Hyakkimaru y Dororo se asocian con Saru, un niño cuya hermana mayor ha sido ofrecida como sacrificio, y juntos se enfrentan al demonio.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/fe9f2d00435b1626bd4d1ad32f118bcb" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/KhQgC27m?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/7MxwmLyD#ztuUVpYCpKtp_dwM2A5GzU-wy-NbNZ2mG9tWAdB7-4A" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 9, title: "La historia de la crueldad", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/u6vv9rz5P0K9JE95A2xTGP9tvvn.jpg", synopsis: "Dororo tiene fiebre alta. Mientras estaba mareado por sus efectos, el joven vislumbra algunos lirios de arañas rojas que despiertan recuerdos de días pasados ​​con sus padres, Hibukuro y Ojiya.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/c3a73a212635ab9a34c539ff6468e007" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/CWqVVkNQ?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/WB4nQBja#qVUegGZqkJXW4UWwx45QaQZBg3eJIGdS3GjDdWdNchM" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 10, title: "La historia de Tahomaru", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/3EMzSIyeHCb1i6xs7B3ZqG6hsKt.jpg", synopsis: "Un pueblo dentro del dominio de Daigo está siendo aterrorizado por un demonio que habita en un lago cercano. Tahomaru, acompañado por sus ayudantes, Hyogo y Mutsu, se ofrece como voluntario para exterminarlo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/1fc2fc56f77f94f8980f183c6ad2fa63" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/M1vii5hC?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/bERiWRzY#OCwxCWu-C6KdCm0vBhI3cvgzM_4jrSeHO8Xr-yMzBpc" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 11, title: "La historia de Banmon, Parte 1", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/4D6PrRfaZn1wMfnCyvqDtWOXVGY.jpg", synopsis: "Después de entrar en los dominios del señor Daigo, Dororo y Hyakkimaru escuchan historias de Banmon, la enorme muralla que es el último resto de un fuerte que una vez estuvo en la frontera. Hyakkimaru se enfrenta al zorro demonio que acecha la muralla.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/9bd78f718ff692fbca6a4d21444423c1" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/JJDZw5vn?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/mRQCyIJD#p8tB0aDA6ZhQbM2NRjb7RReUoXcbM4zCCAtY9C7fDcA" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 12, title: "La historia de Banmon, Parte 2", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/4Kqssb1ve18cwLKCD60NEJIz7nt.jpg", synopsis: "Daigo, quien ofreció a su propio hijo a los demonios, se preocupa cada vez más por las desgracias que ocurren en su dominio. Mientras tanto, Hyakkimaru está tratando de recuperar las partes del cuerpo que le fueron arrebatadas. Como atraídos por el destino, padre e hijo se enfrentan entre sí.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/a2d24cc7dc4c4ca382b4d48104dd242c" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/udDZDcbC?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/LRgmSADA#6pdb8hBJNmPu_Wvz67P1bbd7XQdBcG1AsdFuqon6Zok" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 13, title: "La historia del Buda con el rostro en blanco", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/oIhjEQyABUWJGikWeZcPtui1QL3.jpg", synopsis: "Tras dejar el señorío de Daigo, Dororo encuentra una estatua de Fudo, uno de los dioses de la sabiduría. Pero la estatua es en realidad un demonio que está coleccionando caras de humanos intentando encontrar una para sí mismo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/ba76eb47df45010630492e3355774688" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/DLvy4tjz?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/HYRzjbJS#uTtf1IHdy6B3kLTOuqt3Xgs-eBh6oOzv_aqz62l6NhQ" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 14, title: "La historia de Sabame", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/hhos5hv7M2DvwjeOD2IM93OhY1Y.jpg", synopsis: "Cuando Dororo y Hyakkimaru visitan las ruinas de un templo quemado, se encuentran con un hombre llamado Sabame que gobierna los alrededores. Sabame los invita a su residencia y les cuenta la historia sobre el templo quemado y el demonio que lo persigue. Sin embargo, Dororo y Hyakkimaru empiezan a sospechar algo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/8e14f299395fabcfacb9cd176709a8ef" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/ZRuiiNz4?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/SJxEmBSS#vz7qBL9egmQEai7G4kaYMJ5uN25SEtMGQOkxrtMOXWw" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 15, title: "La historia de la escena del infierno", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/yVy1IBSqUtidCRHXpq094lz7V3N.jpg", synopsis: "Sabame ha estado alimentando a los demonios con aldeanos para proteger el pueblo que gobierna. Cuando Hyakkimaru se enfrenta una vez más a las polillas demoníacas, atrapan a Dororo en un almacén.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/a2ea60da2c4b7fff78a7ae3f59894096" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/CDNb6fsr?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/GQhVRaKT#TunedkV6KfbAZiXZqjKkhgHsBnxLK7IPJS4DfFoEqvs" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 16, title: "La historia de Shiranui", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/AlW3Iuu6YeMhdYnkI0BHwmLvism.jpg", synopsis: "Dororo ha sido apresado por Itachi y está siendo llevado al cabo donde Hibukuro supuestamente escondió el dinero. Cuando Itachi y sus hombres buscan botes para llegar al cabo, se les acerca un muchacho de un solo brazo llamado Shiranui.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/82a6a30eababe580c05edd9371502130" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/ySjpH4Zt?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/HRhHUb7D#KR-nYCpeV4ZYypFAZTCW8jZVzM26KQtUtyip2eQiQUE" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 17, title: "La historia de preguntas y respuestas", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/xv3F5maqfOMreLkwLyv6vbUdpVu.jpg", synopsis: "Jukai se reúne de nuevo con un Hyakkimaru cubierto de sangre en el campo de batalla, y descubre qué relación hay entre Hyakkimaru y los demonios. Hyakkimaru le pedirá a Jukai una pierna protésica nueva, pero...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/b5bca9c6f76e56763b1df558b47ae7c5" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/kxMea7go?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/aAoEkRgR#5NTVGF_s4ZvPssyL60Zgse_jB7CiMDIS4g4GLBAjJfY" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 18, title: "La historia de la Capa de la impermanencia", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/hSodpEsJ62G3nynPLGKGOs0LC8m.jpg", synopsis: "El demonio tiburón lanza un rugido y ataca a Dororo, que está atado y no puede moverse. Mientras tanto, una tropa de soldados comandados por Tahomaru también se acerca a la capa.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/06badb663e6b8be4884bfdb9a82c0404" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/EpPasByp?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/qAQkGIaQ#2Ur-vJ4GTT8FMWzbBUSUOsmGE3XD036oDDLq39PsE0c" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 19, title: "La historia de los Amanojaku", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/aTo2W2lvxMRkgG2F6YjN203fSgt.jpg", synopsis: "Para reparar la espada rota de Hyakkimaru, él y Dororo viajan a una aldea donde vive un maestro espadachín llamado Munetsuna. Al llegar a la casa de Munetsuna, se encuentran con su hija Okowa.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/05053702848a404c38775e4faed4d9ff" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/oeDhCjK5?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/eFxixLIJ#9IDDtrpUoo1v7Bw5DkuVKMfj_Bzh_dOoIFpsKPMo4Oc" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 20, title: "La historia de Nue", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/ve42YCU5V2x2LeWGiIYVAItZBub.jpg", synopsis: "Mientras viajan por un sendero de montaña en busca de un demonio, Dororo y Hyakkimaru se encuentran con un joven llamado Dice-spot Saburota. El hombre dice que él también está cazando al demonio, y se pusieron en marcha para exterminarlo juntos.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/27d71022e79cf0d88fcb968d9fa62205" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/irmyFM7r?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/SEQVRQqK#K_V3K4wOj1zCPstW9btD38mgV7IJ9-5QkRsw9LhpIk0" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 21, title: "La historia de romper el ciclo del sufrimiento", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/2ih17ysxSiyA4jondtUO1q5xFBz.jpg", synopsis: "Daigo Kagemitsu continúa preparándose para la guerra con la tierra vecina de Asakura. Al recibir la noticia de que Hyakkimaru se está acercando a su dominio, Kagemitsu envía a Tahomaru para que se deshaga de él.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/5153a9d18aa74c118355aec3a850ae9c" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/CpfyJ9sC?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/fAY0nRjT#_SQL_KEQq7yUGn-v_rHC0hCyxlGwclEHPowhSHhUG9U" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 22, title: "La historia de Nui", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/cVG0wNfH808GRhJCaqU4vqIqnoi.jpg", synopsis: "Dentro del castillo de Daigo, Lady Nui aparece ante la celda en la que Dororo ha sido encarcelado. Mientras tanto, Hyakkimaru también se acerca al castillo mientras trata de recuperar su cuerpo y Dororo. Detrás de Hyakkimaru se encuentra Midoro, quien se ha transformado en un ghoul.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/2eb393c864618b3dff6a746f34fb4b15" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/mdxRnbjD#mys4Q6UfVG2_68LCCKIQc6xGN9Ysl5yvRa6ycpQ1G4o" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 23, title: "La historia de los demonios", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/yah55wObW1L41UqasHH98pgKiAh.jpg", synopsis: "Hyakkimaru se encuentra cara a cara con Tahomaru, Mutsu y Hyogo, quienes han sido poseídos por el poder de los demonios. Dororo, Lady Nui y Biwamaru se apresuran a la escena, donde son testigos de una feroz batalla que determinará el futuro de la tierra de Daigo.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/c46ef322a7429e4a1caf36f504ba2396" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/TMNkZhU8?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/3ZRGXRIS#a7EtvaBNGrlEehMDxhJEvNqxItOG7hFrZ9DcfBU_H0k" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 24, title: "Dororo y Hyakkimaru", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/nJYpl47wN4Bn7mhBk8YhueiMs9T.jpg", synopsis: "El castillo de Daigo está envuelto en llamas. Dentro, dos hermanos de sangre están a merced del destino. Dororo, Jukai y Lady Nui también se dirigen al castillo, cada uno con sus propios pensamientos que pesan en sus corazones. Para una vida que comenzó con un grito silenciado, ¿Adónde conducirá el camino del destino?", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/ea8921f1f580831fe5c5eb8ba8e26fc3" },
+            { name:"Servidor 2", url:"https://pixeldrain.com/u/MBbpUiRN?embed" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/rNxC3TpR#P74BeIChxCvnY_EZz7wIw7jQL3vUvdZABQQCUWSdFx4" }
+          ] }
+                            ]
+                        }
+      ]
+    }
+  ]
+};
+window.REPORT_CONFIG = {
+  botToken: "8054804331:AAFSNNlWBl_Qr4q4YVQCPcCcBdcKb96kHYY",
+  chatId: "-1003956211914",
+  topicId: "2"
+};
+</script>
+
+<!-- Modal configuración serie -->
+<div id="cfg-overlay" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.25s;display:flex;align-items:center;justify-content:center;padding:20px">
+  <div id="cfg-sheet" style="width:100%;max-width:360px;background:#111;border-radius:20px;padding:20px;transform:scale(0.92);opacity:0;transition:transform 0.28s cubic-bezier(0.4,0,0.2,1),opacity 0.28s">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:800">Configuración</div>
+      <button id="cfg-close" style="background:#1a1a1a;border:none;color:#888899;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:14px"></div>
+    <div id="cfg-autowatched-row" style="display:flex;align-items:center;gap:12px;border-radius:10px;padding:14px;cursor:pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#888899;flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span style="flex:1;font-size:14px;line-height:1.3">Marcado automático de episodios y reproducción del último capítulo</span>
+      <span class="toggle-pill" id="cfg-autowatched-pill"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cfg-overlay');
+  const sheet   = document.getElementById('cfg-sheet');
+  const pill    = document.getElementById('cfg-autowatched-pill');
+  const row     = document.getElementById('cfg-autowatched-row');
+  let aw = localStorage.getItem('auto_watched') === '1';
+  function updatePill(){ pill.classList.toggle('active', aw); }
+  updatePill();
+  document.getElementById('cfg-btn').addEventListener('click', () => {
+    overlay.style.background = 'rgba(0,0,0,0.7)';
+    overlay.style.pointerEvents = 'auto';
+    sheet.style.transform = 'scale(1)';
+    sheet.style.opacity = '1';
+  });
+  function close(){
+    overlay.style.background = 'rgba(0,0,0,0)';
+    overlay.style.pointerEvents = 'none';
+    sheet.style.transform = 'scale(0.92)';
+    sheet.style.opacity = '0';
+  }
+  overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
+  document.getElementById('cfg-close').addEventListener('click', close);
+  row.addEventListener('click', () => {
+    aw = !aw;
+    localStorage.setItem('auto_watched', aw ? '1' : '0');
+    updatePill();
+  });
+})();
+</script>
+<!-- Modal Reportar problema -->
+<div id="report-modal-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px">
+  <div id="report-modal-box" style="width:100%;max-width:360px;background:#141414;border-radius:20px;border:1px solid rgba(255,255,255,0.07);overflow:hidden;transition:transform 0.28s cubic-bezier(0.34,1.2,0.64,1),opacity 0.22s;transform:scale(0.9);opacity:0">
+    <div id="report-form-view">
+      <div style="padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:9px;background:rgba(255,70,70,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff5555" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:800;color:#f0f0f0">Reportar problema</div><div style="font-size:10px;color:#555566;margin-top:1px">Ayúdanos a mejorar</div></div>
+        <button id="report-modal-close" class="modal-x-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div style="padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Idioma</div><div style="position:relative"><select id="report-lang-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Servidor</div><div style="position:relative"><select id="report-srv-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        </div>
+        <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Problema</div><div style="position:relative"><select id="report-type-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:12px;padding:9px 26px 9px 10px;outline:none;cursor:pointer;font-family:inherit"><option value="" disabled selected style="color:#555566">Selecciona un problema...</option><option value="Video no carga">Video no carga</option><option value="Sin audio">Sin audio</option><option value="Subtítulos incorrectos">Subtítulos incorrectos</option><option value="Episodio incorrecto">Episodio incorrecto</option><option value="Calidad mala">Calidad mala</option><option value="Anuncios excesivos">Anuncios excesivos</option><option value="Otro">Otro</option></select><svg style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        <div style="display:flex;gap:6px;align-items:stretch"><textarea id="report-comment" placeholder="Comentario opcional..." style="flex:1;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:8px 10px;resize:none;height:48px;outline:none;font-family:inherit;line-height:1.4"></textarea><button id="report-send-btn" style="padding:0 16px;background:rgba(255,70,70,0.18);border:1px solid rgba(255,70,70,0.35);border-radius:8px;color:#ff6060;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;letter-spacing:0.2px;flex-shrink:0">Enviar</button></div>
+        <div id="report-status" style="font-size:10px;text-align:center;min-height:12px;color:#555566"></div>
+      </div>
+    </div>
+    <div id="report-success-view" style="display:none;text-align:center;padding:28px 16px"><div id="report-success-icon" style="width:48px;height:48px;border-radius:50%;background:rgba(0,230,118,0.1);border:1.5px solid rgba(0,230,118,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;transform:scale(0.4);opacity:0;transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1),opacity 0.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:14px;font-weight:800;color:#f0f0f0;margin-bottom:4px">Reporte enviado</div><div style="font-size:11px;color:#555566">Gracias por ayudarnos a mejorar</div></div>
+  </div>
+</div>
+
+<!-- Modal WebVideo Caster -->
+<div id="cast-modal-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px">
+  <div id="cast-modal" style="width:100%;max-width:520px;background:#111;border-radius:20px;padding:20px;border:1px solid rgba(255,255,255,0.08)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,230,118,0.12);border:1px solid rgba(0,230,118,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#f0f0f0">Transmitir a TV</div><div style="font-size:11px;color:#888899;margin-top:1px">Requiere WebVideo Caster instalado</div></div>
+      <button id="cast-modal-close" class="modal-x-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:12px"></div>
+    <p style="font-size:12px;color:#aaaabc;line-height:1.55;margin-bottom:12px">Para transmitir el video a tu TV necesitas <strong style="color:#f0f0f0">WebVideo Caster</strong>, una app gratuita en la Play Store.</p>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <a href="https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo" target="_blank" id="cast-modal-download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar</a>
+      <button id="cast-modal-transmit">Transmitir ahora</button>
+    </div>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px;background:#1a1a1a;border-radius:10px"><input type="checkbox" id="cast-installed-check" style="width:16px;height:16px;accent-color:#00E676;cursor:pointer;flex-shrink:0"/><span style="font-size:12px;color:#888899">Ya tengo instalado WebVideo Caster</span></label>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = 'cast_installed';
+  const overlay = document.getElementById('cast-modal-overlay');
+  const closeBtn = document.getElementById('cast-modal-close');
+  const transmitBtn = document.getElementById('cast-modal-transmit');
+  const check = document.getElementById('cast-installed-check');
+  let pendingCastUrl = null;
+  function closeModal() { if(overlay) overlay.style.display = 'none'; }
+  window.openCastModal = function(url) {
+    if (localStorage.getItem(STORAGE_KEY) === '1') { window.location.href = url; return; }
+    pendingCastUrl = url; if(check) check.checked = false; if(overlay) overlay.style.display = 'flex';
+  };
+  if(transmitBtn) transmitBtn.addEventListener('click', () => {
+    if (check && check.checked) localStorage.setItem(STORAGE_KEY, '1');
+    closeModal();
+    if (pendingCastUrl) { window.location.href = pendingCastUrl; pendingCastUrl = null; }
+  });
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(overlay) overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.01.js"></script>
+<script src="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series20.js"></script>
+</body>
+</html>
