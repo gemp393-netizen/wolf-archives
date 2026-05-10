@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0A0A0A">
+<title>Rooster Fighter - ANiGo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.02.css">
+</head>
+<body>
+
+<header id="serie-header">
+  <button class="back-btn" onclick="location.href=SERIE.backUrl||'home.html'" aria-label="Volver">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <span class="header-title" id="header-title"></span>
+  <button class="cfg-btn" id="cfg-btn" aria-label="Configuración">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+</header>
+
+<!-- Reproductor integrado -->
+<div id="player-section" style="display:none">
+  <div id="player-header">
+    <button id="btn-close-player" aria-label="Volver a episodios">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div id="player-ep-title"></div>
+    <div class="player-actions">
+      <button id="btn-report" class="action-btn" aria-label="Reportar error">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <span>Reportar</span>
+      </button>
+      <button id="btn-cast" class="action-btn btn-cast" aria-label="Transmitir">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        <span>Transmitir</span>
+      </button>
+      <button id="btn-lang" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="btn-lang-label">Idioma</span>
+      </button>
+      <button id="btn-srv" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <span id="btn-srv-label">Servidor</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="player-wrap">
+    <div class="player-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div id="player-footer">
+    <button class="nav-btn" id="btn-prev">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>Anterior</span>
+    </button>
+    <button class="nav-btn" id="btn-next">
+      <span>Siguiente</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="seasons-wrap">
+  <div class="seasons-tabs" id="seasons-tabs"></div>
+</div>
+
+<div class="episodes-list" id="episodes-list"></div>
+
+<script>
+const SERIE = {
+  id: "roster",
+  title: "Rooster Fighter",
+  url: "",
+  backUrl: "go:home",
+  proxyUrl: "https://calm-water-d0e3.yt-thesthipoficial.workers.dev/",
+  seasons: [
+    {
+      num: 1,
+      label: "Temporada 1",
+      episodes: [
+                        {
+                            num: 1, title: "Episodio 1", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/rvLiZOzkpLglemPSv2LwAS7Fw7u.jpg", synopsis: "Keiji, the wandering rooster, lands in a new city, but a Demon suddenly appears!", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/835214cf730c9ce7395301160cfe44ee" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/WeZW1Y5I#TKY3n0TX6ljEgNIX_fTe91h8TDWEWy1ZLKE659sz8pw" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/6a2812258719871c8306757ca8a8d6f5" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/bXZRGLxb#F-O9RqnGf8BfG5Hs6o1IWt9RkwVh0135blPDtrG7aos" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 2, title: "Episodio 2", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/gqyOnvqHuQo164NxoiQwkuBrPlZ.jpg", synopsis: "Keiji's injured soon after he saves Piyoko's \"Pops\" from permanently transforming into a Demon.", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/1af4eded70960c7f474b55b44d9a4024" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/A3ZnBAKK#eOqUhj2YJnRW2GhanaPswQpBKnBWVKrHQFZPKsVybwI" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/022ab624ca2e755e069db75990d02dad" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/135RhaxZ#G9K8YCwrNGOQerDkHIxKhKJwBXqgP2Q4IPUjrg2OAp4" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 3, title: "Episodio 3", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/sPaaSQsdXeqguApY51Bzc9nmwuU.jpg", synopsis: "Elizabeth challenges Keiji to a fight and divulges info about the White Demon, his sworn enemy.", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/046a4e092e5ae3a840934a5969b2b047" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/Rd0WlBTQ#Tb4xEe5QkHjGSQ3HIef9qN0RVaI-gaSyIg5N5snpIp4" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/e5df83c974e2754fd9af0cbd778e76c7" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/oBUQnTyb#GdhGpVex1CILYpKdrhZQSaSPZwOEChWf59oCn2Gya0I" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 4, title: "Episodio 4", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/jSZC01O12OCKpURE0St60mIIg6c.jpg", synopsis: "The trio find themselves at a village where the adults have been brainwashed by a Demon.", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/31b56d84719503057cc6e80aeb6c0de1" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/C95DQB7K#ul16syIoGq4gZhmbZ-brkL6LXI46JKreHKD1HB6omXc" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/3ca76489bc34cf42420c2f4fae702c53" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/H5w2BQLB#svDz08dwznMDXkJvSxLs5jiiXCMYpmzJlB89ejtdK0E" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 5, title: "Episodio 5", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/7I1S2W5ghy5fvfQIvMi5w1xqFh1.jpg", synopsis: "The trio have a falling out and go their separate ways, while a typhoon ominously approaches.", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/4b1b3393d29b2c906ca01e00f6cffed4" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/Pk4TQCoI#fgyFfF69h9tNR4OfK1KFQl4RUVnzGj3q9G22FDo2AcU" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/7f1415360d1df7f2c637e6c970ce2298" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/Hl51VSQJ#pzc5Qy21uVNACy3bJkMT0wmPyVBVFvHKwGDajRUADZc" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 6, title: "Episodio 6", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/sGDL3BRvJjYBTkfMw0nHhhoN7lp.jpg", synopsis: "When Morio's efforts fail, the flood approaches! Will Keiji and his flock be able to save the city?", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/db5e95f02d0d23a16a6b9322c545365e" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/cRV1nATI#QiXnT4Z4dI-nrAmmc106R8nmoqz8hzKRoqtSUtE1mcE" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 7, title: "Episodio 7", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/1ju3h4519MiGQIjvuRGBWC6d57g.jpg", synopsis: "Keiji puts his chicken pride on the line and accepts an invitation to a group date!", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/f6cd2482870bae80b8add6f5e9d86d22" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/2O52WbrJ#ryTmGzsGC51030sEm0ZCfiDG3DxDB3ZBuhS0RJklucg" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/21b56ab59c40f809640d5610db302ecf" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/RjtSHJoL#-Ydp8n1mOM1yRxL-Y0p0UxhgCWRx63vA_bcyANhAdoE" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 8, title: "Episodio 8", duration: " 20 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/vmuSBgxbQQFQgTXUBzZDKpDqahM.jpg", synopsis: "Keiji finds out a brainwashed Morio is on a rampage and heads out to save him.", langs: [
+          { name:"Latino", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/cefec09ce25f91e22db577763807c26b" }
+          ] },
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/3a0a4358a3ed59afe29399623c89b7e1" }
+          ] }
+                            ]
+                        }
+      ]
+    }
+  ]
+};
+window.REPORT_CONFIG = {
+  botToken: "8054804331:AAFSNNlWBl_Qr4q4YVQCPcCcBdcKb96kHYY",
+  chatId: "-1003956211914",
+  topicId: "2"
+};
+</script>
+
+<!-- Modal configuración serie -->
+<div id="cfg-overlay" style="position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.25s;display:flex;align-items:center;justify-content:center;padding:20px">
+  <div id="cfg-sheet" style="width:100%;max-width:360px;background:#111;border-radius:20px;padding:20px;transform:scale(0.92);opacity:0;transition:transform 0.28s cubic-bezier(0.4,0,0.2,1),opacity 0.28s">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:800">Configuración</div>
+      <button id="cfg-close" style="background:#1a1a1a;border:none;color:#888899;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:14px"></div>
+    <div id="cfg-autowatched-row" style="display:flex;align-items:center;gap:12px;border-radius:10px;padding:14px;cursor:pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#888899;flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span style="flex:1;font-size:14px;line-height:1.3">Marcado automático de episodios y reproducción del último capítulo</span>
+      <span class="toggle-pill" id="cfg-autowatched-pill"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cfg-overlay');
+  const sheet   = document.getElementById('cfg-sheet');
+  const pill    = document.getElementById('cfg-autowatched-pill');
+  const row     = document.getElementById('cfg-autowatched-row');
+  let aw = localStorage.getItem('auto_watched') === '1';
+  function updatePill(){ pill.classList.toggle('active', aw); }
+  updatePill();
+  document.getElementById('cfg-btn').addEventListener('click', () => {
+    overlay.style.background = 'rgba(0,0,0,0.7)';
+    overlay.style.pointerEvents = 'auto';
+    sheet.style.transform = 'scale(1)';
+    sheet.style.opacity = '1';
+  });
+  function close(){
+    overlay.style.background = 'rgba(0,0,0,0)';
+    overlay.style.pointerEvents = 'none';
+    sheet.style.transform = 'scale(0.92)';
+    sheet.style.opacity = '0';
+  }
+  overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
+  document.getElementById('cfg-close').addEventListener('click', close);
+  row.addEventListener('click', () => {
+    aw = !aw;
+    localStorage.setItem('auto_watched', aw ? '1' : '0');
+    updatePill();
+  });
+})();
+</script>
+<!-- Modal Reportar problema -->
+<div id="report-modal-overlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px">
+  <div id="report-modal-box" style="width:100%;max-width:360px;background:#141414;border-radius:20px;border:1px solid rgba(255,255,255,0.07);overflow:hidden;transition:transform 0.28s cubic-bezier(0.34,1.2,0.64,1),opacity 0.22s;transform:scale(0.9);opacity:0">
+    <div id="report-form-view">
+      <div style="padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:9px;background:rgba(255,70,70,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff5555" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:800;color:#f0f0f0">Reportar problema</div><div style="font-size:10px;color:#555566;margin-top:1px">Ayúdanos a mejorar</div></div>
+        <button id="report-modal-close" class="modal-x-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div style="padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Idioma</div><div style="position:relative"><select id="report-lang-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Servidor</div><div style="position:relative"><select id="report-srv-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        </div>
+        <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Problema</div><div style="position:relative"><select id="report-type-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:12px;padding:9px 26px 9px 10px;outline:none;cursor:pointer;font-family:inherit"><option value="" disabled selected style="color:#555566">Selecciona un problema...</option><option value="Video no carga">Video no carga</option><option value="Sin audio">Sin audio</option><option value="Subtítulos incorrectos">Subtítulos incorrectos</option><option value="Episodio incorrecto">Episodio incorrecto</option><option value="Calidad mala">Calidad mala</option><option value="Anuncios excesivos">Anuncios excesivos</option><option value="Otro">Otro</option></select><svg style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        <div style="display:flex;gap:6px;align-items:stretch"><textarea id="report-comment" placeholder="Comentario opcional..." style="flex:1;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:8px 10px;resize:none;height:48px;outline:none;font-family:inherit;line-height:1.4"></textarea><button id="report-send-btn" style="padding:0 16px;background:rgba(255,70,70,0.18);border:1px solid rgba(255,70,70,0.35);border-radius:8px;color:#ff6060;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;letter-spacing:0.2px;flex-shrink:0">Enviar</button></div>
+        <div id="report-status" style="font-size:10px;text-align:center;min-height:12px;color:#555566"></div>
+      </div>
+    </div>
+    <div id="report-success-view" style="display:none;text-align:center;padding:28px 16px"><div id="report-success-icon" style="width:48px;height:48px;border-radius:50%;background:rgba(0,230,118,0.1);border:1.5px solid rgba(0,230,118,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;transform:scale(0.4);opacity:0;transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1),opacity 0.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:14px;font-weight:800;color:#f0f0f0;margin-bottom:4px">Reporte enviado</div><div style="font-size:11px;color:#555566">Gracias por ayudarnos a mejorar</div></div>
+  </div>
+</div>
+
+<!-- Modal WebVideo Caster -->
+<div id="cast-modal-overlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px">
+  <div id="cast-modal" style="width:100%;max-width:520px;background:#111;border-radius:20px;padding:20px;border:1px solid rgba(255,255,255,0.08)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,230,118,0.12);border:1px solid rgba(0,230,118,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#f0f0f0">Transmitir a TV</div><div style="font-size:11px;color:#888899;margin-top:1px">Requiere WebVideo Caster instalado</div></div>
+      <button id="cast-modal-close" class="modal-x-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:12px"></div>
+    <p style="font-size:12px;color:#aaaabc;line-height:1.55;margin-bottom:12px">Para transmitir el video a tu TV necesitas <strong style="color:#f0f0f0">WebVideo Caster</strong>, una app gratuita en la Play Store.</p>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <a href="https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo" target="_blank" id="cast-modal-download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar</a>
+      <button id="cast-modal-transmit">Transmitir ahora</button>
+    </div>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px;background:#1a1a1a;border-radius:10px"><input type="checkbox" id="cast-installed-check" style="width:16px;height:16px;accent-color:#00E676;cursor:pointer;flex-shrink:0"/><span style="font-size:12px;color:#888899">Ya tengo instalado WebVideo Caster</span></label>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = 'cast_installed';
+  const overlay = document.getElementById('cast-modal-overlay');
+  const closeBtn = document.getElementById('cast-modal-close');
+  const transmitBtn = document.getElementById('cast-modal-transmit');
+  const check = document.getElementById('cast-installed-check');
+  let pendingCastUrl = null;
+  function closeModal() { if(overlay) overlay.style.display = 'none'; }
+  window.openCastModal = function(url) {
+    if (localStorage.getItem(STORAGE_KEY) === '1') { window.location.href = url; return; }
+    pendingCastUrl = url; if(check) check.checked = false; if(overlay) overlay.style.display = 'flex';
+  };
+  if(transmitBtn) transmitBtn.addEventListener('click', () => {
+    if (check && check.checked) localStorage.setItem(STORAGE_KEY, '1');
+    closeModal();
+    if (pendingCastUrl) { window.location.href = pendingCastUrl; pendingCastUrl = null; }
+  });
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(overlay) overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.01.js"></script>
+<script src="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series22.js"></script>
+</body>
+</html>
