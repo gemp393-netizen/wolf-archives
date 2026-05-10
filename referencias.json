@@ -1,7 +1,8 @@
 [
-  {
+ {
     "id": "roster",
-    "sesion": "https://github.com/gemp393-netizen/wolf-archives/blob/main/rooster-fighter.html"
+    "sesion": "https://github.com/gemp393-netizen/wolf-archives/blob/main/rooster-fighter.html",
+    "html": true
   },
   {
     "id": "doro",
