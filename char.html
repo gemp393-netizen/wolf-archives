@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0A0A0A">
+<title>Charlotte - ANiGo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.02.css">
+</head>
+<body>
+
+<header id="serie-header">
+  <button class="back-btn" onclick="location.href=SERIE.backUrl||'home.html'" aria-label="Volver">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <span class="header-title" id="header-title"></span>
+  <button class="cfg-btn" id="cfg-btn" aria-label="Configuración">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+</header>
+
+<!-- Reproductor integrado -->
+<div id="player-section" style="display:none">
+  <div id="player-header">
+    <button id="btn-close-player" aria-label="Volver a episodios">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div id="player-ep-title"></div>
+    <div class="player-actions">
+      <button id="btn-report" class="action-btn" aria-label="Reportar error">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <span>Reportar</span>
+      </button>
+      <button id="btn-cast" class="action-btn btn-cast" aria-label="Transmitir">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        <span>Transmitir</span>
+      </button>
+      <button id="btn-lang" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="btn-lang-label">Idioma</span>
+      </button>
+      <button id="btn-srv" class="action-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <span id="btn-srv-label">Servidor</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="player-wrap">
+    <div class="player-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <div id="player-footer">
+    <button class="nav-btn" id="btn-prev">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>Anterior</span>
+    </button>
+    <button class="nav-btn" id="btn-next">
+      <span>Siguiente</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="seasons-wrap">
+  <div class="seasons-tabs" id="seasons-tabs"></div>
+</div>
+
+<div class="episodes-list" id="episodes-list"></div>
+
+<script>
+const SERIE = {
+  id: "char",
+  title: "Charlotte",
+  url: "",
+  backUrl: "go:home",
+  proxyUrl: "https://calm-water-d0e3.yt-thesthipoficial.workers.dev/",
+  seasons: [
+    {
+      num: 1,
+      label: "Temporada 1",
+      episodes: [
+                        {
+                            num: 1, title: "Pienso en los demás", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/emaHs6uvIRs2njmY6khRZPXFuvF.jpg", synopsis: "Yū Otosaka es un niño que un día despierta la capacidad de poseer temporalmente cualquier persona en su línea de visión. El uso de este poder para mirar a las respuestas de otros estudiantes durante los exámenes, YU arregla para entrar en una escuela de prestigio, donde una vez más usa su habilidad para atraer a madonna de la escuela, Yumi Shirayanagi. Sin embargo, una puntuación perfecta de Yu llaman la atención del presidente del consejo estudiantil, que desafía a él para tomar el examen de nuevo o bien cara la expulsión por motivos de hacer trampa. Esto resulta ser una trampa tendida por una chica llamada Nao Tomori,", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=c2JRdXoxTFdCK3BvWmFvZ2ZaVVVnbU9rdUlVWTVvWWlzT1Byd0NkQjVTWWU0aXdDZ2hTQnJpT09UNUQ4czlGTDo6I2hCAM87j7wYUqjv.6l4Gg--&t=ac83d3f400e95a5d31e7c59d2743bf73", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=cStCcGZNZWlFaW5BOVhpdEhZMy9sYjJ4WEtMSEpySXJ0Z3N4TGY1WXRNMVhZTWsrR2V6WXB4UDl2eXlHcG9NZzo6BgKcjNlOPr.7ixFH_jfG1w--&t=ac83d3f400e95a5d31e7c59d2743bf73", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/4fc55fbe1ddac46861242f229d820327" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/spY2yCYQ#Phrh-yCpUzj5BgRoksRYF8CPn5jKy-nDbIqnCI1nup4" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!4O9GnILR!jqmWxc7wGDS7AC0VFMVi2hcHbTc8Az6zVcnj_2h_R2s" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=UitVOTA4Wkdic281NlFBVExPamc2ZFF4bW5CVlRzVE5vMDI0T1JoaVRLN050aFFUTCt0UVI5a0hNMStJYkNJQlZ3SlN3RVRkZUVvR21xZ3g2dkVOZzc3Z2pDaHp5cktVdFI3ejhiNk8zK3M9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/yT8OyJb6NUxa", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 2, title: "Melodía de la desesperación\" \"Zetsubō sin Senritsu", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/dGebUNa84OexUUDoYZtehZj5Q4K.jpg", synopsis: "Con su objetivo capturado, Nao, que puede hacerse invisible para un objetivo específico, se encarga de Yu y su hermana pequeña Ayumi a ser transferido a Hoshinoumi Academy, una escuela para aquellos con habilidades como la de él. Primeros abandonado por Yumi como consecuencia de las restricciones impuestas a él, YU prepara regañadientes por su nueva vida como miembro del consejo de estudiantes de Hoshonoumi Academia.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=RTMzdWJDa1pPWkRzbVNHVTBtaVprU3ZNMldNMFAzeDZWaW0xVlVibkZDREJ4OEM4YUZ4c3VVT2pMY2lzcTVtMjo6YJDxVIT_REtGAc7ivv2AuA--&t=f4401dd087608e344ac946c2f5a982e4", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=bWtvRmlCQ09IdmJPSjBxQXhadHF3eXVRUEtMb090Vnp6VC85bStaV3VaWG5iNmVRTlhFSHJITzhVOTRJT0VWSTo6uQ77yC0bOvaSSTMvzqn1Ow--&t=f4401dd087608e344ac946c2f5a982e4", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/f049340374e70cdce3264b86aa4f6b45" },
+            { name:"Servidor 4", url:"https://pixeldrain.com/u/mzN1xy4G?embed" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/swpBhJzC#bSx-SVzWVbvBfz7OV-Iv8lIY4jS_DXAmwJQQ78B8Gd8" },
+            { name:"Servidor 6", url:"https://mega.nz/embed/!5aNUzJ7A!vV3sUXLm8LesEnCGGfkM8div0qrxeK6UVCJKbJbSi4c" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/u2xycc5ets8R", sandbox:true },
+            { name:"Servidor 8", url:"https://v.tioanime.com/embed.php?s=amus&v=ZXBnRWdjWkxoeTdXNjRHWFhRRW03UVU0YkliWHFNN3NHdHV5Sm1TSWFOeDI4bDlFRVhrakZaaFY4bENSOVc0MUNVTVJ5ck82SmxneUQxc0tYV3VydUw4T2dDRFFkcVdvOWFNbUNSTFBwRzQ9" },
+            { name:"Servidor 9", url:"https://ok.ru/videoembed/474404293297" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 3, title: "Episodio 3", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/8p9ANM3dxRsdzh6d6KciwYxzO89.jpg", synopsis: "Information concerning a new ability wielder reaches Yu and the active student council members. In their search of an individual with two abilities of soul possession and pyrokinesis, Yu and company comes across a particular pop idol.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=K0pRcVpEbTRmNVVjRFN4eEZ2WmppcWFUOGtlVlFlR0s1VkNpTlk4U3Rkdko3WmxJZzkxOEtMTzQ3Sm1mYTYxZzo69H_69Q7SRbzBzN0jFSblpA--&t=fe53ff5f33342773a12c81d85fb0a090", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=YkVaaVF3ekg0OS9uWWhUNmFnOXBEK2c4OHQ4N0JMSEJhSTBCN0lWVHNkWkdFOElTdEgrdytRaDRrdWh4ZEVBcjo649aTaxNUyKbYP0gxtdc0IQ--&t=fe53ff5f33342773a12c81d85fb0a090", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/60d6660dfd179be3f6ff12265729550c" },
+            { name:"Servidor 4", url:"https://pixeldrain.com/u/LT7mCLad?embed" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/1sBRDZ5a#FgOoL9klljCiq2V144AWXBt959rmjJ0yyLrDPBQ2tHE" },
+            { name:"Servidor 6", url:"https://mega.nz/embed/!1WdDCYhS!kOHSgeIdTGTvv_RUgK-w59giE_mePt9Mww7rultC330" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/1n33BXwMvGgL", sandbox:true },
+            { name:"Servidor 8", url:"https://v.tioanime.com/embed.php?s=amus&v=eE1BTC8vbFNFanNYQ0xhK05JTnpLZzdRRkgxY0gxNU5uTks3WkFtMm91UWV5dzdZQzRLbnRvWHEvam1Ic0pDeWh2TGw0VkFZTW9TNVZiUHNnTnZaRlorWVoyQjB6ZlVzSExwUHl0NkxvdEk9" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 4, title: "Episodio 4", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/jO6G7DGRJU1SMaOYNNSOgEMuVf7.jpg", synopsis: "The information of an ability wielder that Kumagami relays to the student council on the day Yusa transfers into Hoshinoumi Academy points to a high school baseball pitcher that Tomori already had her eyes on. His ability is telekinesis. Against a pitcher that uses his ability to pitch what could be called diabolical balls, the Hoshinoumi Academy student council challenges him to a game of baseball to make him stop doing so.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=MUZqM1VsSEhheklFN3pGQ1hJU2lnODZ2TFZ2NFRoN3lLUzhlVEpUdjNVbDRuZmZXRjdQb1Q3WGVmd25QTldnWjo6cQPed8dNBAIbzQ6DE.DktA--&t=32621602e69ea9d84568e3a88264882e", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=MzZ2WUNlNjBqKzl2R3o5S3pybkxwWDZmRE5DUXNiNmYxSFJ2UEs4VlZxdFRPUGZERk9OMW9lOFlCNjRjTTFEUjo6cEyRYkzoOhVTKA9I_oeJmg--&t=32621602e69ea9d84568e3a88264882e", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/ad32fc0c31752c2a5a2defa04b9f1a01" },
+            { name:"Servidor 4", url:"https://pixeldrain.com/u/JHMSGBXX?embed" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/hkwlRQZD#GFUDoJMOH1372V9JGsGdOPQNeV1H5KPMm_pz38vDLBE" },
+            { name:"Servidor 6", url:"https://mega.nz/embed/!wSNGUBLA!8YjQ2QxoaqlAednUTJUtAIXDuFgZok8z3NmNVEVWsQY" },
+            { name:"Servidor 7", url:"https://v.tioanime.com/embed.php?s=amus&v=SWUzenBiSU5PdXhXUHNwMDdYc2tmOXpUQVNaQkM2QWVGQ05EWDRMRGFESjNTZENBMjR2TTJQNUxSQnlwMTUwM0dpQzYzN3NXcnU1SlZPMi9pU094dForUGtDelhKVE52VzFiSHZoVkRmQzQ9" },
+            { name:"Servidor 8", url:"https://ok.ru/videoembed/568683858608" },
+            { name:"Servidor 9", url:"https://www.yourupload.com/embed/228cgmUWN60O", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 5, title: "Episodio 5", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/5KTKJ8f0loNAoPSGrIdQQkZWr5p.jpg", synopsis: "With the information from Kumagami as a hint, the student council members continue a stakeout in the middle of the mountains where a wielder of a special ability supposedly hangs out. As they spend their time barbecuing and fishing, Yu comes across the music of ZHIEND through Tomori's music player. And, the one that appeared in front of them as they continued the stakeout...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=UzlXSzZqOVBXM0hINmZaUUs1YWRieUFQQi9ZbkUxeHAzODc2RzRMbS94OGNtNVR6WERRTG9Bd1U0UWpDS1Zsczo6eQ6JL_EiEudZ9422vCfRcQ--&t=6cd4d4f7768fc86ca5642be0f600b518", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=ejhzU0NLOG9FM29OSFR5QWlwOVhyai9zUGZYSFBITk1BNDlVTXZtNWVILzVyWVIwSG5obHM0VnJHRHZpMkhqTDo6BYAkZNfZBAMBWzFR0y7mjQ--&t=6cd4d4f7768fc86ca5642be0f600b518", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/ba402e6a88a7ed45034d15bbefb55afd" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/YxgESawb#NP8XVo-NIm1TAzfqmMpCOarTnhOq3NOYWvUIAK8Epvs" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!1KdhAbhb!ZUtuxRgxJNV3usB_IN5SOhI2zQPSUlWckngFGZ6DQA0" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=VzgyT0M4UGpQL2NZNjdxWmxsUFd0VHI3Yzk3RlRJRXd2NHRGRTdIRy9PcnVNeTFPdnQ2RE9JMXVSWCtwNzJaYjY1Vzd0SzlwQ0J5b1dkY2RLaExJcTRFYkVoYlNBbHUwak1GQTRiQ3FHdk09" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/jY7gxt40rnaf", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 6, title: "Episodio 6", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/cfhT4tB76Ylie6u8bTXxqeL07Zt.jpg", synopsis: "The location of the new ability wielder according to Kumagami was the condo where Ayumi was currently home with a cold. Ayumi tells Yu and Tomori who came to see how she was doing about the nightmare that she had. Tomori, thinking that the dream's details can be a hint in figuring out Ayumi's ability, tells Yu to draw out the contents of Ayumi's dream from her...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=akVROUgzMDBKTDRpK3E3SGkwWGRpbjBPZWc1eVF2NG5DMlM1dWs4eXlsL3RVN0JJM0p5ZHZmZW9rbEtvWXovNDo6YPTysClBbbuc.lmNXqxYLQ--&t=25b6a534a8c88b8e73fe7b865fd36bde", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=MERSc2lqRE5adnBvMEFRcjREZE5YZUFIQkNrbFlKd3N2Z3BRbnF4dHMvT3NMVk9GTDFueW5GOXMyeDcwanBORDo6csUh4ER7TBpOxRQjhgevLA--&t=25b6a534a8c88b8e73fe7b865fd36bde", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/3812c7032941087a0c67d56e12262625" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/IkpgxQIC#ZQTM7tK6Iyk5fPuSfs4bBEMDTBXjDKT-lv-H5Mz4m4Q" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!BPcQ1DpK!a1nKCdjLk_lcO98smqhkBswPLgsru_OJb9441-txMns" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=RndhT3RQSlVLYWhjNTN2ZzBudUUrWU03QnJOZGF3NTlvMWxqRzUzZHp3T2hCeWEyakt2VDEzMEdBZ1F0YlQyWllXM0d5WDZ2NDN5eVpLSHl1NWhXbkhIV1MzRElIUm9YTU10bElQVExheGs9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/6k766pim11jK", sandbox:true },
+            { name:"Servidor 8", url:"https://ok.ru/videoembed/470013774510" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 7, title: "Episodio 7", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/300TNLUi8UAYMyNriPSABzZKCRL.jpg", synopsis: "Yu, crestfallen by the fact that he lost his little sister Ayumi, shuts himself alone inside his home and cuts all communication with the outside world. Denying even the worried student council members that came to check on him, Yu leads a dissolute life only to find appearing before him...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=OUdyZmh4TWtTNjY5QVFmTTZOK2g4NTAyQ1RGVGpCWGlYZy9rNXp1SE5jb3oveFFBS2lBMGNJVHFLMi90TDZZZzo6R6XB93n5P.FmUzBCL1_X9A--&t=72d967ccf9faca785116600afd44ce7e", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=bFc5VFNxdGVzSE9UcVd6TFNubjIyOHZrdmI3ZUM1NGI5UXZNNnR0ZmFUUHlWa25IQStlTk8yS2RMWTlMdFlzSjo6cghVAhnWKNGGTbOR_OlP8w--&t=72d967ccf9faca785116600afd44ce7e", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/d768e6b386a79624b804eb1073cc4dae" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/ot5RGZpS#z9jPl9eq1Iblh1EKYKM_773fumBCZhHNeBOSBxIN-mk" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!lfEHnBZB!bBpC1d0LNj-lFcPorhd6kybH-qQ1Vy7WJGi_bTHDGfM" },
+            { name:"Servidor 6", url:"https://www.yourupload.com/embed/hd31HvG81NrT", sandbox:true },
+            { name:"Servidor 7", url:"https://v.tioanime.com/embed.php?s=amus&v=K3dveVF0NzgzT3oyb292M0lLd0hIREVlMEdNWmxTVjJ0cmFpcUcwMGVCcTltOGNidUd2ZEtBa2s3TWxxanZHOVV5M09rb1NqSHdCd0dKS0ZwZk5zYnBYVUFjWHV0SVUzL0FRcENGWHdRc2c9" },
+            { name:"Servidor 8", url:"https://ok.ru/videoembed/445528214224" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 8, title: "Episodio 8", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/fRNdhnnJrTPnCUaaDsYxdgfwofH.jpg", synopsis: "Yu, starting to accept Ayumi's death, attends school for the first time in a while. There, he finds comfort in a school life that has not changed from before. Then, he ends up having to attend a ZHIEND live gig alone with Tomori, but on the way back home from school that day, he bumps into a foreign-looking woman carrying a white cane.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=UUhUNzd0dWtqVTUxY2U0bHRXcjVGVDdEVEI5T0RJRVhnT0JwN0tTQzEvamEyYmJBY2NSaWlLWkVFc3RpbXZnTTo6gqaNlbpUQk4SOWMTAbfS6w--&t=1721f00a322cee1c00c5703f21b6cf18", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=YTFFa3dwc2hhOWFsZXNIUWx4Sy80Ry9OMHlpMU9URUkxS2s0K3dIUlZ5a04zb0I0YVVFV2pJZnk2RGdqM2daMzo6XgijhhmQ3xDRdbFVUIqHJQ--&t=1721f00a322cee1c00c5703f21b6cf18", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/7ad19d4579381fb88e46f33d687a7472" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/J4QCiLxD#5O-nspqj2KVjD10pviHIdr9vl9rm5geuIdgPFL-UZFE" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!YONEgD6J!e8Glci_qYoupw0bfWCjiSXRvYwYngGCBn_l3KHyyqmo" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=YkxjTkNVYmx1Q1owQVdhbjVBQVNyTStFWTViOHRubDhhRExtZVhKZnpTOW1rL0ZueHkzZHgxOElXV0ZOZy9kOUlNdVVjWEpPSGI5dkFwYzQzUTNFOXo2ZWJYeDNkMWRFTjVjWlJCYTFtM0E9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/ci5Vt6yHugPe", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 9, title: "Episodio 9", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/u9lrwqLVWqRnA97TMp5H3vshiEP.jpg", synopsis: "Yu ends up heading to a ZHIEND live gig alone with Tomori. The gigs starts and the audience heats up, but Yu feels a strange feeling within his heart...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=YlEvTFVodU5DTjJHaHl3UWZQRmxIQ1k2TlA2S3llUmtDYTV2YTBuTU13ZVQvQ0hXV1Q1Wm9XTk51L0tLM2FkMjo6aADqCPch5mfhfs.X.pn.kw--&t=9cba846441c5201d7e1e844139678c0f", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=ZE9XTnVkbjFjUCtYQ3FGUXR1bUF4TGx2OEhBVE12bTRaSkRVUEhpVEpTVUpGYjFjOXNiZDgvMDY5bWtQU2lOazo6ANe_cJoOpcSvqcaNU98vEg--&t=9cba846441c5201d7e1e844139678c0f", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/dbb39d81cc00610728bba93b853ebe01" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/h9JWxbjZ#K4LwETHntlrF23Y3rVqrojjz1OFBLZELTLcn1lhon90" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!MTUHjQoD!xg0mqKEZU57Cg1f6C_W-2K5GfszcSExtOMnSlXCH0JU" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=Z29XbDRKK002MXR2VEE1RE9xQlBUMm11MEJuZmRtWmtiOG56V2t4NkU4UzhKdnE5TDIxTmpGajR6NDJKKzBYdjBjS25DYVNsRmpGQnMvQys5T05vdXJyN1k5TjFieUZiTm5tT0duZjFvVFk9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/r482hjbya4j3", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 10, title: "Episodio 10", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/uQv6TvdHuwhf1eI5JUaysQLDUBu.jpg", synopsis: "Yu's big brother Shunsuke has the power to leap through time, but has lost his eyesight from utilizing this ability repeatedly, and is no longer able to use his power. So, now Yu must take his big brother’s place and save Ayumi.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=WHlCeDlnQ1Yra2dORmEzcFVDaEVSWVNFNkVXZTZHcnQzMTVHQkFUVjZvT0crUHRzYmVJamlMUDlQVmNOZUtoazo6WbW6By7cf21tQcjNWvAOug--&t=dc14e10c0ecf8029a86d27e74d140539", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=T0dqNFptdWFNODZLWnRJdncvdHRrWERiVVhOVzhWMk85OHd3WHpLdFRPbzc0TzIvZStpZU5FUnZCbkRCRXppMjo6LVGbQarsEf6teMMb.FbJBg--&t=dc14e10c0ecf8029a86d27e74d140539", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/d401396d57acd50af5f71342715a2add" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/84gEzIKa#75KLfCmHRwgW4nuQbczodQv_OwSOwqpgiTj4BCSlvSE" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!BSNw1CYC!gkaWaX9ykyz9UU3284pERei65A0RalDduPSSg6mPoCQ" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=bzlTOTBSNHZ5VWF5c3FaL091cXR6cGVNN0oxaFRNNnpBWjBmSExJdWl2WUxOdFIyRkVrWU54UkJ3c29TaW5mQVV4M253MEI0cCtHZUFHek0zM0hhQkpZKzBNTDRUN3VMTE5tRTl2OTNqWVU9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/pK456nQyAM2q", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 11, title: "Episodio 11", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/sAX8B1ITlnJ4bYJH6CaFVEcKVJf.jpg", synopsis: "Kumagami and Medoki appear before Yu Otosaka after he successfully rescues Ayumi. Within the laboratory facilities that they take the siblings to, Yu finds out the reason behind the outbreaks of special abilities. Kumagami then gains information regarding a new ability wielder and heads to Hoshinoumi Academy, but...", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=Mmk1UllBZGtoU2xncndhRXowVlQ4MTdtMDYrRjluM2FPOWtCbWg0RTNRbG9YN25EZ0N0UEUrbHhVVi92N3BOZzo63GAqQc2QGdcUSASZ1ot3AQ--&t=32f8bee7c830d03270034463142809cd", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=bjFGVmpIcWMyWDRWTmo4aWs1TVVteWRJazFOVlpLMzR2ZXhkRDFKQ3R1bk1rVlpjbmk0cVJINjdRdmZHLzNoZDo6zjT5WkycZFzE9QppDicvVg--&t=32f8bee7c830d03270034463142809cd", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/cfe510319947b11fc522d9138840bd90" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/cwYinbIA#wTcTcBMKAMNbvgXznX06VKXj-z9h52pvxwmb8wiC1u4" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!YLNhnaKL!_5jZGR04mebZDEFM1lkpHHIRbcBotW1ggDIjz4rMkm8" },
+            { name:"Servidor 6", url:"https://www.yourupload.com/embed/pEob75c14crg", sandbox:true },
+            { name:"Servidor 7", url:"https://v.tioanime.com/embed.php?s=amus&v=YURlWjZyWDJQd3VMN3IxTXl2RDE0dVduQU1PVXBPRkFIc0hmRk5iU3Q0dC83TmFOVHpMdWVOb09mb0dGeTFoSkJWODRPYktwMEpkVkJXVWthQmFVRm9FcXpiL2NmWkdqaEE5YnJZVUt3NG89" }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 12, title: "Episodio 12", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/pUMJ1dFiAUWfzXRTN1OxZBa3pZB.jpg", synopsis: "The friends from student council and Ayumi come visit Yu who is hospitalized from his injuries. Among them is Tomori. During his conversation with Tomori, Yu makes a certatin decision.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=RTY4OFRTY3RwaFRid01JdjhuMXBRaHkzRm9SdG1XL2YxV1JsTDZwOGx4aDlhMDhPQkt4K0ZrMmo3YXJTOU1aMzo6CBsDhauF5FUDqlr0UV8aOQ--&t=550843601db9a6ce932d3cc285f98d78", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=TE5uQ3pEMHJreVNIcUYyQ2pWQm5uWEVNZC9Xb3VuWlRCeGVoRGoyeHVvdzk1ZWlraFZBRHRneDQ1a2VrODZMeTo685amipkE9bQpwSNaNMeNRQ--&t=550843601db9a6ce932d3cc285f98d78", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/89e99cd00cf7449f063b6f0cfcddda28" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/Ep4XTITC#a6ruLN9AravcIU1HctlbRgwcgnMZg4FtDngKeimdhaQ" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!kK01FI4C!D-fHqjLz_Br38C57umNVgfCIuorw4_axxLqBv47TaSc" },
+            { name:"Servidor 6", url:"https://v.tioanime.com/embed.php?s=amus&v=Z084ME50eW91dTlTSnVMWTFlbzhWV0VMNDlScU9EMlNBaWpKYXhBK240QlpqYnFMaXl3UGxvWXNMb296RkhOOU5YcUpMeTlRNWN6QjY2SEpCSmdJZjU1YUZNUDBSN0kzM1MxYzU3QXhkK0k9" },
+            { name:"Servidor 7", url:"https://www.yourupload.com/embed/P4OQDIBd00d0", sandbox:true }
+          ] }
+                            ]
+                        },
+                        {
+                            num: 13, title: "Episodio 13", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/zSlCU7MAcEVSzbbY4avsezmEMOI.jpg", synopsis: "The decision that Yu makes is to plunder the ability of every last wielder of a special ability on Earth.\n\nIt is a choice that provides salvation to every ability-wielder, but at the same time, it is a choice that makes Yu pay a huge price in return.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://jkanime.net/jkplayer/um?e=cllVd2F4OThSUFFKZWE1RktoRDNYTjBhNkJrNkYrVDVZZGpVL3BCRXRyWWNGMEpHOFFRYmdLY3VVcWl4WUZHczo6wpQQAvAvyfjz7di8n9vXqA--&t=f06d9b059d9be032816e17a6d8a3d430", deobfuscate:true },
+            { name:"Servidor 2", url:"https://jkanime.net/jkplayer/umv?e=eWllN0REYzlRcDB2KzgrQk5WWlBkTUFwNnh2TEc5N0wrLzhSdHlMWUQvMExidTRiSXlvVTVBV29LT1FwWXgwWDo69SqJTYvfPpPu6TEoUKinIA--&t=f06d9b059d9be032816e17a6d8a3d430", deobfuscate:true },
+            { name:"Servidor 3", url:"https://player.zilla-networks.com/m3u8/06360e900669b72ca67b7e545633f525" },
+            { name:"Servidor 4", url:"https://mega.nz/embed/RxJmiLAb#prDzY2ScVw3zhuQgQ9YAQjX5TeKhIIZJhy7XMHl0ufI" },
+            { name:"Servidor 5", url:"https://mega.nz/embed/!5Ld2zJ6L!U-1UXCHAMTPrIathULW8TNjqO4glMAhmXYg76-GziDI" },
+            { name:"Servidor 6", url:"https://www.yourupload.com/embed/CLCn360FJHn5", sandbox:true },
+            { name:"Servidor 7", url:"https://v.tioanime.com/embed.php?s=amus&v=bSt6d2JUVnlpb2NIOTR3M3l5Tm9GTUkvZjJHa0ZSSlJOcUc1cEtQU3VCVnVka2tMc3NZMFlrNzg0MWFXa2lqMnJwOExPRHFDeTBOT3h6OUxvaWtNbkxXdzlSU3N3SlRzS3kzbk9tNFpZU0E9" }
+          ] }
+                            ]
+                        }
+      ]
+    },
+    {
+      num: 2,
+      label: "OVAs",
+      episodes: [
+                        {
+                            num: 1, title: "Episodio 1", duration: "23 min", type: "episode", thumb: "https://image.tmdb.org/t/p/w300/4TCM5eGrSjqSsvabmTNXpoiufVl.jpg", synopsis: "Takehito Kumagami's clairvoyance leads his group of friends to another child with supernatural powers: Iori Sekiguchi, a mind reader. However, as they try to approach her, they realize her power makes her nearly impossible to pin down. Having been chosen by the club to handle this case, Nao Tomori and Yuu Otosaka must find a way to get around the child's unique ability before it is too late.", langs: [
+          { name:"Japonés", servers:[
+            { name:"Servidor 1", url:"https://player.zilla-networks.com/m3u8/03a7e189a8397b2749dbc13ebacae395" },
+            { name:"Servidor 2", url:"https://mega.nz/embed/V4RiAazS#NzIBw5zSMQtA9RvYHBBHFK4awdE3wDJDYMmr5WWceH4" },
+            { name:"Servidor 3", url:"https://mega.nz/embed/!xPtlWTrS!IUlVhUo16iyCK0C4PnkbL0HQQPiRea2UTQfISSown5g" },
+            { name:"Servidor 4", url:"https://v.tioanime.com/embed.php?s=amus&v=WmVyQXlPZndYYUxKa1VNajVVdHVzSlJKalpJVnBRRnU3Zjl5RStqSWtZditpU2dodHNyRjNqNDg5TVI0VWV2a2FOdTdXaThNVjBhcVBCNW05Ni9oYjNMY2JnWmtkLzltdEF6RXJrbHl1d1E9" },
+            { name:"Servidor 5", url:"https://www.yourupload.com/embed/qWW47w83kY0T", sandbox:true },
+            { name:"Servidor 6", url:"https://pixeldrain.com/u/eCMqM2sM?embed" }
+          ] }
+                            ]
+                        }
+      ]
+    }
+  ]
+};
+window.REPORT_CONFIG = {
+  botToken: "8054804331:AAFSNNlWBl_Qr4q4YVQCPcCcBdcKb96kHYY",
+  chatId: "-1003956211914",
+  topicId: "2"
+};
+</script>
+
+<!-- Modal configuración serie -->
+<div id="cfg-overlay" style="position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.25s;display:flex;align-items:center;justify-content:center;padding:20px">
+  <div id="cfg-sheet" style="width:100%;max-width:360px;background:#111;border-radius:20px;padding:20px;transform:scale(0.92);opacity:0;transition:transform 0.28s cubic-bezier(0.4,0,0.2,1),opacity 0.28s">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:800">Configuración</div>
+      <button id="cfg-close" style="background:#1a1a1a;border:none;color:#888899;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:14px"></div>
+    <div id="cfg-autowatched-row" style="display:flex;align-items:center;gap:12px;border-radius:10px;padding:14px;cursor:pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#888899;flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span style="flex:1;font-size:14px;line-height:1.3">Marcado automático de episodios y reproducción del último capítulo</span>
+      <span class="toggle-pill" id="cfg-autowatched-pill"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cfg-overlay');
+  const sheet   = document.getElementById('cfg-sheet');
+  const pill    = document.getElementById('cfg-autowatched-pill');
+  const row     = document.getElementById('cfg-autowatched-row');
+  let aw = localStorage.getItem('auto_watched') === '1';
+  function updatePill(){ pill.classList.toggle('active', aw); }
+  updatePill();
+  document.getElementById('cfg-btn').addEventListener('click', () => {
+    overlay.style.background = 'rgba(0,0,0,0.7)';
+    overlay.style.pointerEvents = 'auto';
+    sheet.style.transform = 'scale(1)';
+    sheet.style.opacity = '1';
+  });
+  function close(){
+    overlay.style.background = 'rgba(0,0,0,0)';
+    overlay.style.pointerEvents = 'none';
+    sheet.style.transform = 'scale(0.92)';
+    sheet.style.opacity = '0';
+  }
+  overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
+  document.getElementById('cfg-close').addEventListener('click', close);
+  row.addEventListener('click', () => {
+    aw = !aw;
+    localStorage.setItem('auto_watched', aw ? '1' : '0');
+    updatePill();
+  });
+})();
+</script>
+<!-- Modal Reportar problema -->
+<div id="report-modal-overlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px">
+  <div id="report-modal-box" style="width:100%;max-width:360px;background:#141414;border-radius:20px;border:1px solid rgba(255,255,255,0.07);overflow:hidden;transition:transform 0.28s cubic-bezier(0.34,1.2,0.64,1),opacity 0.22s;transform:scale(0.9);opacity:0">
+    <div id="report-form-view">
+      <div style="padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:9px;background:rgba(255,70,70,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff5555" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2V5s-1-1-4-1-5 2-8 2z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:800;color:#f0f0f0">Reportar problema</div><div style="font-size:10px;color:#555566;margin-top:1px">Ayúdanos a mejorar</div></div>
+        <button id="report-modal-close" class="modal-x-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div style="padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Idioma</div><div style="position:relative"><select id="report-lang-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+          <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Servidor</div><div style="position:relative"><select id="report-srv-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:7px 22px 7px 9px;outline:none;cursor:pointer;font-family:inherit"></select><svg style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        </div>
+        <div><div style="font-size:10px;font-weight:700;color:#444455;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">Problema</div><div style="position:relative"><select id="report-type-select" style="width:100%;appearance:none;-webkit-appearance:none;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:12px;padding:9px 26px 9px 10px;outline:none;cursor:pointer;font-family:inherit"><option value="" disabled selected style="color:#555566">Selecciona un problema...</option><option value="Video no carga">Video no carga</option><option value="Sin audio">Sin audio</option><option value="Subtítulos incorrectos">Subtítulos incorrectos</option><option value="Episodio incorrecto">Episodio incorrecto</option><option value="Calidad mala">Calidad mala</option><option value="Anuncios excesivos">Anuncios excesivos</option><option value="Otro">Otro</option></select><svg style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#555566" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+        <div style="display:flex;gap:6px;align-items:stretch"><textarea id="report-comment" placeholder="Comentario opcional..." style="flex:1;background:#1e1e1e;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0e0;font-size:11px;padding:8px 10px;resize:none;height:48px;outline:none;font-family:inherit;line-height:1.4"></textarea><button id="report-send-btn" style="padding:0 16px;background:rgba(255,70,70,0.18);border:1px solid rgba(255,70,70,0.35);border-radius:8px;color:#ff6060;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;letter-spacing:0.2px;flex-shrink:0">Enviar</button></div>
+        <div id="report-status" style="font-size:10px;text-align:center;min-height:12px;color:#555566"></div>
+      </div>
+    </div>
+    <div id="report-success-view" style="display:none;text-align:center;padding:28px 16px"><div id="report-success-icon" style="width:48px;height:48px;border-radius:50%;background:rgba(0,230,118,0.1);border:1.5px solid rgba(0,230,118,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;transform:scale(0.4);opacity:0;transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1),opacity 0.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:14px;font-weight:800;color:#f0f0f0;margin-bottom:4px">Reporte enviado</div><div style="font-size:11px;color:#555566">Gracias por ayudarnos a mejorar</div></div>
+  </div>
+</div>
+
+<!-- Modal WebVideo Caster -->
+<div id="cast-modal-overlay" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px">
+  <div id="cast-modal" style="width:100%;max-width:520px;background:#111;border-radius:20px;padding:20px;border:1px solid rgba(255,255,255,0.08)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,230,118,0.12);border:1px solid rgba(0,230,118,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#f0f0f0">Transmitir a TV</div><div style="font-size:11px;color:#888899;margin-top:1px">Requiere WebVideo Caster instalado</div></div>
+      <button id="cast-modal-close" class="modal-x-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:12px"></div>
+    <p style="font-size:12px;color:#aaaabc;line-height:1.55;margin-bottom:12px">Para transmitir el video a tu TV necesitas <strong style="color:#f0f0f0">WebVideo Caster</strong>, una app gratuita en la Play Store.</p>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <a href="https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo" target="_blank" id="cast-modal-download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Descargar</a>
+      <button id="cast-modal-transmit">Transmitir ahora</button>
+    </div>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px;background:#1a1a1a;border-radius:10px"><input type="checkbox" id="cast-installed-check" style="width:16px;height:16px;accent-color:#00E676;cursor:pointer;flex-shrink:0"/><span style="font-size:12px;color:#888899">Ya tengo instalado WebVideo Caster</span></label>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = 'cast_installed';
+  const overlay = document.getElementById('cast-modal-overlay');
+  const closeBtn = document.getElementById('cast-modal-close');
+  const transmitBtn = document.getElementById('cast-modal-transmit');
+  const check = document.getElementById('cast-installed-check');
+  let pendingCastUrl = null;
+  function closeModal() { if(overlay) overlay.style.display = 'none'; }
+  window.openCastModal = function(url) {
+    if (localStorage.getItem(STORAGE_KEY) === '1') { window.location.href = url; return; }
+    pendingCastUrl = url; if(check) check.checked = false; if(overlay) overlay.style.display = 'flex';
+  };
+  if(transmitBtn) transmitBtn.addEventListener('click', () => {
+    if (check && check.checked) localStorage.setItem(STORAGE_KEY, '1');
+    closeModal();
+    if (pendingCastUrl) { window.location.href = pendingCastUrl; pendingCastUrl = null; }
+  });
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(overlay) overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fasfqeawrdfq3wer3w/Wolf-Player@main/wolf-playerv1.0.01.js"></script>
+<script src="https://cdn.jsdelivr.net/gh//gemp393-netizen/JNJKJKNJKS5ri1@main/series22.js"></script>
+</body>
+</html>
