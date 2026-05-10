@@ -1,5 +1,5 @@
 [
- {
+  {
     "id": "roster",
     "sesion": "https://github.com/gemp393-netizen/wolf-archives/blob/main/rooster-fighter.html",
     "html": true
@@ -12,6 +12,11 @@
   {
     "id": "char",
     "sesion": "https://github.com/gemp393-netizen/wolf-archives/blob/main/char.html",
+    "html": true
+ },
+    {
+    "id": "kaisenm",
+    "sesion": "https://github.com/gemp393-netizen/wolf-archives/blob/main/jujutsu-kaisen-0.html",
     "html": true
   }
 ]
